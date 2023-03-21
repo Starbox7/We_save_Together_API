@@ -2,4 +2,4 @@
 .env
 
 #불필요 폴더
-node_modules
+/node_modules
