@@ -1,27 +1,19 @@
 import { Router } from "express";
-import { compare, genSalt, hash } from "bcrypt";
-import { connect, Schema, model } from "mongoose";
+import { genSalt, hash } from "bcrypt";
+import { connect, model } from "mongoose";
 import "dotenv/config";
+
+import { AdminSchema } from "../models/modelUser.js";
 
 const DBtestRouter = Router();
 
 const MONGO_URI = process.env.MONGO_URI;
 const SALT = process.env.SALT;
 
-const UserSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    }
-})
-const User = model("users", UserSchema);
 
-DBtestRouter.post("/register", async (req, res) => {
+const Admin = model("admins", AdminSchema);
+
+DBtestRouter.post("/admin/register", async (req, res) => {
     try {
         await connect(MONGO_URI)
 
@@ -29,14 +21,17 @@ DBtestRouter.post("/register", async (req, res) => {
         const hashedPassword = await hash(req.body.password, salt)
 
         //data
-        const newUser = new User({
-            id: req.body.id,
+        const newAdmin = new Admin({
+            email: req.body.email,
             password: hashedPassword,
+            name: req.body.name,
+            hakbun: req.body.hakbun,
+            phone: req.body.phone
         })
 
         //insert data
-        const user = await newUser.save()
-        res.status(200).json(user)
+        const admin = await newAdmin.save()
+        res.status(200).json(admin)
     } catch (err) {
         console.log(err)
         res.status(500).json(`${err}`)
