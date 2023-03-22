@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv, { config } from "dotenv";
+import dotenv from "dotenv";
 import { DBtestRouter } from "./routes/DBtest.js";
 
 dotenv.config();
