@@ -13,7 +13,7 @@ const SALT = process.env.SALT;
 
 const Admin = model("admins", AdminSchema);
 
-DBtestRouter.post("/admin/register", async (req, res) => {
+DBtestRouter.post("/register", async (req, res) => {
     try {
         await connect(MONGO_URI)
 

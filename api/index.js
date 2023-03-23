@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
-app.use("/api/DBtest", DBtestRouter);
+app.use("/test", DBtestRouter);
 
 /** 맥에서 5000번 사용 불가 */
 app.listen(PORT, () => {
