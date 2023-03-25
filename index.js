@@ -26,5 +26,5 @@ app.use("/test", DBtestRouter);
  * 시작되면 콘솔에 메시지를 출력합니다.
  */
 app.listen(PORT, () => {
-  console.log("We save Together API is running");
+  console.log("We save Together API is running\nPORT : " + PORT);
 });
