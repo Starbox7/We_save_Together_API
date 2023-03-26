@@ -1,3 +1,11 @@
+/**
+ * HTTP 상태코드 리스트, 필요시 더 추가해서 사용하세요.
+ * 참고 링크 ->
+ * 1.  공식문서 : https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+ * 2.  대백과 : https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C
+ * 3.  블로그 : https://www.whatap.io/ko/blog/40/
+ * */
+
 const SC = {
   OK: {
     status: 200,

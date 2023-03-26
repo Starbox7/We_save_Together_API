@@ -9,11 +9,6 @@ import userController from '../controller/userController.js';
 
 const authRouter = Router();
 
-// authRouter.post(
-//   '/init', //
-//   userController.initAdmin
-// );
-
 authRouter.get(
   '/sms/:phone', //
   userController.isAdmin,
