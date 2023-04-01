@@ -6,7 +6,7 @@
  * 3.  블로그 : https://www.whatap.io/ko/blog/40/
  * */
 
-const SC = {
+const StatusCode = {
   OK: {
     status: 200,
     message: 'OK',
@@ -37,4 +37,4 @@ const SC = {
   },
 };
 
-export default SC;
+export default StatusCode;
