@@ -25,4 +25,8 @@ authRouter.put(
   userController.signUp
 );
 
+authRouter
+  .route('/confirm')
+  .post(userController.confirm);
+
 export default authRouter;

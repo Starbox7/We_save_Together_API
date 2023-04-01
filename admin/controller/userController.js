@@ -1,23 +1,36 @@
 /** 컨트롤러에서 DB 영역 분리 작업 예정 */
 /** 보안 */
 import 'dotenv/config';
-
+import { genSalt, hash, compare } from 'bcrypt';
 /** DB, 추후 싱글톤으로 리팩토링 */
 import { connect } from 'mongoose';
 import { Admin } from '../models/modelUser.js';
-
 /** HTTP Respons Status Code */
-import SC from '../utils/StatusCode.js';
-
-import { genSalt, hash, compare } from 'bcrypt';
-
+import StatusCode from '../utils/StatusCode.js';
+/** */
 import CryptoJS from 'crypto-js';
-
+/** */
 import axios from 'axios';
+/** */
+import authService from '../service/authService.js';
 
 const { MONGO_URI, SALT, SERVICE_ID, ACCESS_KEY, SECRET_KEY, FROM_PHONE } = process.env;
 
 const userController = {
+  confirm: async (req, res) => {
+    const {
+      name, hakbun, email, phone
+    } = req.body;
+    console.log(req.body)
+    try {
+      await authService.checkAdminInfo({ name, hakbun, email, phone });
+      return res.status(StatusCode.OK.status).json(StatusCode.OK);
+    } catch (err) {
+      return res.status(StatusCode.NOT_FOUND.status).json(StatusCode.NOT_FOUND);
+    }
+
+  },
+
   isAdmin: async (req, res, next) => {
     const to = req.params.phone;
     const authNum = makeAuthNum();
@@ -27,19 +40,19 @@ const userController = {
 
       const findAdmin = await Admin.findOne({ phone: to });
       if (!findAdmin) {
-        return res.status(SC.NOT_FOUND).json(SC.NOT_FOUND);
+        return res.status(StatusCode.NOT_FOUND).json(StatusCode.NOT_FOUND);
       }
 
       const validated = await compare('404', findAdmin.password);
       if (!validated) {
-        return res.status(SC.CONFLICT.status).json(SC.CONFLICT);
+        return res.status(StatusCode.CONFLICT.status).json(StatusCode.CONFLICT);
       }
 
       await Admin.findOneAndUpdate({ phone: to }, { authNum: authNum });
 
       next();
     } catch (err) {
-      res.status(SC.SERVER_ERROR.status).json(SC.SERVER_ERROR);
+      res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
     } finally {
     }
   },
@@ -77,9 +90,9 @@ const userController = {
         },
       });
 
-      res.status(SC.OK.status).json(SC.OK);
+      res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
-      res.status(SC.SERVER_ERROR.status).json(SC.SERVER_ERROR);
+      res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
     }
   },
   checkAuthNum: async (req, res) => {
@@ -93,11 +106,11 @@ const userController = {
       const authNum = findAdmin.authNum;
 
       if (authNumber === authNum) {
-        return res.status(SC.OK.status).json(SC.OK);
+        return res.status(StatusCode.OK.status).json(StatusCode.OK);
       }
-      res.status(SC.UNAUTHORIZED.status).json(SC.UNAUTHORIZED);
+      res.status(StatusCode.UNAUTHORIZED.status).json(StatusCode.UNAUTHORIZED);
     } catch (err) {
-      res.status(SC.SERVER_ERROR.status).json(SC.SERVER_ERROR);
+      res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
     }
   },
   signUp: async (req, res) => {
@@ -119,11 +132,11 @@ const userController = {
       };
       await Admin.findOneAndUpdate({ phone: req.body.phone }, { $set: newAdmin });
       // 성공 시, 201 상태 코드와 함께 관리자 데이터를 응답으로 반환
-      res.status(SC.CREATED.status).json(SC.CREATED);
+      res.status(StatusCode.CREATED.status).json(StatusCode.CREATED);
     } catch (err) {
       // 오류 발생 시, 500 상태 코드와 함께 에러 메시지 반환
       console.log(err);
-      res.status(SC.SERVER_ERROR.status).json(SC.SERVER_ERROR);
+      res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
     }
   },
 };
