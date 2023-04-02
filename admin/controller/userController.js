@@ -2,7 +2,6 @@
 /** 보안 */
 import 'dotenv/config';
 import { genSalt, hash, compare } from 'bcrypt';
-import session from 'express-session';
 /** DB, 추후 싱글톤으로 리팩토링 */
 import { connect, get } from 'mongoose';
 import { Admin } from '../models/modelUser.js';
@@ -78,13 +77,14 @@ const userController = {
       if (!req.session.authTime) {
         req.session.authTime = null;
       }
-
+      console.log(req.session);
       console.log(req.session.authCode);
       console.log(req.session.authTime);
       req.session.authCode = authNum;
       req.session.authTime = new Date();
       console.log(req.session.authCode);
       console.log(req.session.authTime);
+      console.log(req.session);
 
       res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
@@ -94,6 +94,7 @@ const userController = {
   },
   confirm: async (req, res) => {
     try {
+      console.log(req.session);
       console.log(req.session.authCode);
       console.log(req.session.authTime);
 
@@ -101,6 +102,7 @@ const userController = {
       const authCode = req.session.authCode;
       const authTime = req.session.authTime;
 
+      console.log(req.session);
       console.log(userAuth);
       console.log(authCode);
       console.log(authTime);
