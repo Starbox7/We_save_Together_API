@@ -2,8 +2,9 @@
 /** 보안 */
 import 'dotenv/config';
 import { genSalt, hash, compare } from 'bcrypt';
+import session from 'express-session';
 /** DB, 추후 싱글톤으로 리팩토링 */
-import { connect } from 'mongoose';
+import { connect, get } from 'mongoose';
 import { Admin } from '../models/modelUser.js';
 /** HTTP Respons Status Code */
 import StatusCode from '../utils/StatusCode.js';
@@ -12,25 +13,11 @@ import CryptoJS from 'crypto-js';
 /** */
 import axios from 'axios';
 /** */
-import authService from '../service/authService.js';
+// import authService from '../service/authService.js';
 
 const { MONGO_URI, SALT, SERVICE_ID, ACCESS_KEY, SECRET_KEY, FROM_PHONE } = process.env;
 
 const userController = {
-  confirm: async (req, res) => {
-    const {
-      name, hakbun, email, phone
-    } = req.body;
-    console.log(req.body)
-    try {
-      await authService.checkAdminInfo({ name, hakbun, email, phone });
-      return res.status(StatusCode.OK.status).json(StatusCode.OK);
-    } catch (err) {
-      return res.status(StatusCode.NOT_FOUND.status).json(StatusCode.NOT_FOUND);
-    }
-
-  },
-
   isAdmin: async (req, res, next) => {
     const to = req.params.phone;
     const authNum = makeAuthNum();
@@ -58,41 +45,83 @@ const userController = {
   },
 
   sendSMS: async (req, res) => {
-    const url = `https://sens.apigw.ntruss.com/sms/v2/services/${SERVICE_ID}/messages`;
-    const { signature, timestamp } = makeSignature('POST', `/sms/v2/services/${SERVICE_ID}/messages`);
-    const to = req.params.phone;
+    // const url = `https://sens.apigw.ntruss.com/sms/v2/services/${SERVICE_ID}/messages`;
+    // const { signature, timestamp } = makeSignature('POST', `/sms/v2/services/${SERVICE_ID}/messages`);
+    // const to = req.params.phone;
 
     try {
-      await connect(MONGO_URI);
+      const authNum = makeAuthNum();
+      //   const payload = {
+      //     type: 'SMS',
+      //     contentType: 'COMM',
+      //     countryCode: '82',
+      //     from: FROM_PHONE,
+      //     content: `[We save Together] 인증번호는 ${authNum} 입니다.`,
+      //     messages: [
+      //       {
+      //         to,
+      //       },
+      //     ],
+      //   };
 
-      const findAdmin = await Admin.findOne({ phone: to });
-      const authNum = findAdmin.authNum;
+      //   await axios.post(url, payload, {
+      //     headers: {
+      //       'Content-Type': 'application/json; charset=utf-8',
+      //       'x-ncp-apigw-timestamp': timestamp,
+      //       'x-ncp-iam-access-key': ACCESS_KEY,
+      //       'x-ncp-apigw-signature-v2': signature,
+      //     },
+      //   });
+      if (!req.session.authCode) {
+        req.session.authCode = null;
+      }
+      if (!req.session.authTime) {
+        req.session.authTime = null;
+      }
 
-      const payload = {
-        type: 'SMS',
-        contentType: 'COMM',
-        countryCode: '82',
-        from: FROM_PHONE,
-        content: `[We save Together] 인증번호는 ${authNum} 입니다.`,
-        messages: [
-          {
-            to,
-          },
-        ],
-      };
-
-      const response = await axios.post(url, payload, {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'x-ncp-apigw-timestamp': timestamp,
-          'x-ncp-iam-access-key': ACCESS_KEY,
-          'x-ncp-apigw-signature-v2': signature,
-        },
-      });
+      console.log(req.session.authCode);
+      console.log(req.session.authTime);
+      req.session.authCode = authNum;
+      req.session.authTime = new Date();
+      console.log(req.session.authCode);
+      console.log(req.session.authTime);
 
       res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
+      console.log(err);
       res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
+    }
+  },
+  confirm: async (req, res) => {
+    try {
+      console.log(req.session.authCode);
+      console.log(req.session.authTime);
+
+      const userAuth = req.params.auth;
+      const authCode = req.session.authCode;
+      const authTime = req.session.authTime;
+
+      console.log(userAuth);
+      console.log(authCode);
+      console.log(authTime);
+
+      console.log(req.session.authCode);
+      console.log(req.session.authTime);
+
+      if (userAuth === authCode && new Date() - authTime <= 180000) {
+        // 인증번호가 일치하고 3분 이내에 생성된 경우
+        req.session.authCode = null; // 인증번호 관련 데이터 삭제
+        req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
+        return res.status(StatusCode.OK.status).json(StatusCode.OK);
+      } else if (new Date() - authTime >= 180000) {
+        req.session.authCode = null; // 인증번호 관련 데이터 삭제
+        req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
+        return res.status(StatusCode.NOT_FOUND.status).json(StatusCode.NOT_FOUND);
+      } else {
+        return res.status(StatusCode.UNAUTHORIZED.status).json(StatusCode.UNAUTHORIZED);
+      }
+    } catch (err) {
+      return res.status(StatusCode.BAD_REQUEST.status).json(StatusCode.BAD_REQUEST);
     }
   },
   checkAuthNum: async (req, res) => {
