@@ -11,13 +11,12 @@ const authRouter = Router();
 
 authRouter.get(
   '/sms/:phone', //
-  userController.isAdmin,
   userController.sendSMS
 );
 
 authRouter.get(
-  '/certificate/:phone/:number', //
-  userController.checkAuthNum
+  '/certificate/:auth', //
+  userController.confirm
 );
 
 authRouter.put(
@@ -25,8 +24,8 @@ authRouter.put(
   userController.signUp
 );
 
-authRouter
-  .route('/confirm')
-  .post(userController.confirm);
+// authRouter
+//   .route('/confirm')
+//   .post(userController.confirm);
 
 export default authRouter;

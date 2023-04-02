@@ -2,6 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import session from 'express-session';
+import { MemoryStore } from 'express-session';
 
 /** 라우터 */
 // import { DBtestRouter } from './routes/DBtest.js';
@@ -13,6 +15,32 @@ dotenv.config();
 /** express 인스턴스를 생성 */
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
+
+/** */
+app.use(
+  session({
+    store: new MemoryStore(),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // cookie: {
+    //   secure: true,
+    // },
+  })
+);
+
 /** 환경변수에서 포트 번호를 가져옴 */
 const PORT = process.env.PORT;
 
@@ -20,7 +48,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 /** WA-SANS */
-app.use(cors());
+// app.use(cors());
 
 /**
  * 라우팅을 처리하기 위해 Router를 사용합니다.
