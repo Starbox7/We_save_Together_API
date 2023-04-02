@@ -86,12 +86,16 @@ const userController = {
       console.log(req.session.authCode);
       console.log(req.session.authTime);
       console.log(req.session);
+
       // await new Promise((resolve, reject) => {
       //   req.session.save((err) => {
       //     if (err) reject(err);
       //     else resolve();
       //   });
       // });
+
+      console.log(req.session.id)
+
 
       res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
@@ -102,6 +106,7 @@ const userController = {
     console.log(req.session.id);
     console.log(`req.session.authCode: ${req.session.authCode}`);
     try {
+
       // await new Promise((resolve, reject) => {
       //   req.session.reload((err) => {
       //     if (err) reject(err);
@@ -110,6 +115,11 @@ const userController = {
       // });
       // await req.session.reload();
       console.log(req.params.auth);
+
+      console.log('confirm start')
+      console.log(req.session.id)
+      console.log(req.session);
+
       console.log(req.session.authCode);
       console.log(req.session.authTime);
       const userAuth = req.params.auth;
@@ -126,8 +136,8 @@ const userController = {
 
       if (userAuth == authCode /* && new Date() - authTime <= 180000 */) {
         // 인증번호가 일치하고 3분 이내에 생성된 경우
-        req.session.authCode = null; // 인증번호 관련 데이터 삭제
-        req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
+        // req.session.authCode = null; // 인증번호 관련 데이터 삭제
+        // req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
         return res.status(StatusCode.OK.status).json(StatusCode.OK);
       } else if (false && new Date() - authTime >= 180000) {
         req.session.authCode = null; // 인증번호 관련 데이터 삭제

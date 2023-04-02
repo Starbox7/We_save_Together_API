@@ -14,6 +14,7 @@ dotenv.config();
 /** express 인스턴스를 생성 */
 const app = express();
 
+
 app.use(cors({ origin: true, credentials: true, methods: ['GET', 'POST', 'PUT', 'DELETE'] })); //cors 사용자 식별 테스트
 
 const store = memorystore(session);
@@ -31,6 +32,7 @@ app.use(
     store: newStore,
   })
 );
+
 
 /** 환경변수에서 포트 번호를 가져옴 */
 const PORT = process.env.PORT;
