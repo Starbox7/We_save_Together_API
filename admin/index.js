@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import session from 'express-session';
 import { MemoryStore } from 'express-session';
+import connectMongo from 'connect-mongo';
+import mongoose from 'mongoose';
 
 /** 라우터 */
 // import { DBtestRouter } from './routes/DBtest.js';
@@ -14,6 +16,12 @@ dotenv.config();
 
 /** express 인스턴스를 생성 */
 const app = express();
+const MongoStore = connectMongo(session);
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_URI,
+  collectionName: 'sessions',
+  ttl: 60 * 60, // 세션 만료 시간 (1시간)
+});
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -31,10 +39,10 @@ app.use(
 /** */
 app.use(
   session({
-    store: new MemoryStore(),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: store,
     // cookie: {
     //   secure: true,
     // },
