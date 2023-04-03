@@ -2,13 +2,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import session from 'express-session';
-import { MemoryStore } from 'express-session';
-import connectMongo from 'connect-mongo';
-import mongoose from 'mongoose';
+// import session from 'express-session';
+// import memorystore from 'memorystore';
 
 /** 라우터 */
-// import { DBtestRouter } from './routes/DBtest.js';
 import authRouter from './routes/authRouter.js';
 
 /** dotenv를 사용하여 환경 변수를 설정 */
@@ -16,38 +13,26 @@ dotenv.config();
 
 /** express 인스턴스를 생성 */
 const app = express();
-const MongoStore = connectMongo(session);
-const store = MongoStore.create({
-  mongoUrl: process.env.MONGO_URI,
-  collectionName: 'sessions',
-  ttl: 60 * 60, // 세션 만료 시간 (1시간)
-});
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(cors())
+// app.use(cors({ origin: true, credentials: true, methods: ['GET', 'POST', 'PUT', 'DELETE'] })); //cors 사용자 식별 테스트
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
-);
+// const store = memorystore(session);
+// const newStore = new store({
+//   checkPeriod: 86400000,
+// });
 
 /** */
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-    // cookie: {
-    //   secure: true,
-    // },
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { secure: false },
+//     store: newStore,
+//   })
+// );
+
 
 /** 환경변수에서 포트 번호를 가져옴 */
 const PORT = process.env.PORT;

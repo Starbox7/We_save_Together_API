@@ -19,7 +19,7 @@ authRouter.get(
   userController.confirm
 );
 
-authRouter.put(
+authRouter.post(
   '/register', //
   userController.signUp
 );
