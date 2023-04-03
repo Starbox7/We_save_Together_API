@@ -44,34 +44,36 @@ const userController = {
   },
 
   sendSMS: async (req, res) => {
-    console.log(req.session.id);
+    // console.log(req.session.id);
+
     // const url = `https://sens.apigw.ntruss.com/sms/v2/services/${SERVICE_ID}/messages`;
     // const { signature, timestamp } = makeSignature('POST', `/sms/v2/services/${SERVICE_ID}/messages`);
     // const to = req.params.phone;
 
     try {
-      const authNum = makeAuthNum();
-      //   const payload = {
-      //     type: 'SMS',
-      //     contentType: 'COMM',
-      //     countryCode: '82',
-      //     from: FROM_PHONE,
-      //     content: `[We save Together] 인증번호는 ${authNum} 입니다.`,
-      //     messages: [
-      //       {
-      //         to,
-      //       },
-      //     ],
-      //   };
-
-      //   await axios.post(url, payload, {
-      //     headers: {
-      //       'Content-Type': 'application/json; charset=utf-8',
-      //       'x-ncp-apigw-timestamp': timestamp,
-      //       'x-ncp-iam-access-key': ACCESS_KEY,
-      //       'x-ncp-apigw-signature-v2': signature,
+      // const authNum = makeAuthNum();
+      // const payload = {
+      //   type: 'SMS',
+      //   contentType: 'COMM',
+      //   countryCode: '82',
+      //   from: FROM_PHONE,
+      //   content: `[We save Together] 인증번호는 ${authNum} 입니다.`,
+      //   messages: [
+      //     {
+      //       to,
       //     },
-      //   });
+      //   ],
+      // };
+
+      // await axios.post(url, payload, {
+      //   headers: {
+      //     'Content-Type': 'application/json; charset=utf-8',
+      //     'x-ncp-apigw-timestamp': timestamp,
+      //     'x-ncp-iam-access-key': ACCESS_KEY,
+      //     'x-ncp-apigw-signature-v2': signature,
+      //   },
+      // });
+
       // if (!req.session.authCode) {
       //   req.session.authCode = null;
       // }
@@ -81,11 +83,11 @@ const userController = {
       // console.log(req.session);
       // console.log(req.session.authCode);
       // console.log(req.session.authTime);
-      req.session.authCode = authNum;
-      req.session.authTime = new Date();
-      console.log(req.session.authCode);
-      console.log(req.session.authTime);
-      console.log(req.session);
+      // req.session.authCode = authNum;
+      // req.session.authTime = new Date();
+      // console.log(req.session.authCode);
+      // console.log(req.session.authTime);
+      // console.log(req.session);
 
       // await new Promise((resolve, reject) => {
       //   req.session.save((err) => {
@@ -94,17 +96,18 @@ const userController = {
       //   });
       // });
 
-      console.log(req.session.id)
+      // console.log(req.session.id)
 
 
       res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
+      console.log(err)
       res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
     }
   },
   confirm: async (req, res) => {
-    console.log(req.session.id);
-    console.log(`req.session.authCode: ${req.session.authCode}`);
+    // console.log(req.session.id);
+    // console.log(`req.session.authCode: ${req.session.authCode}`);
     try {
 
       // await new Promise((resolve, reject) => {
@@ -114,16 +117,16 @@ const userController = {
       //   });
       // });
       // await req.session.reload();
-      console.log(req.params.auth);
+      // console.log(req.params.auth);
 
-      console.log('confirm start')
-      console.log(req.session.id)
-      console.log(req.session);
+      // console.log('confirm start')
+      // console.log(req.session.id)
+      // console.log(req.session);
 
-      console.log(req.session.authCode);
-      console.log(req.session.authTime);
+      // console.log(req.session.authCode);
+      // console.log(req.session.authTime);
       const userAuth = req.params.auth;
-      const authCode = req.session.authCode;
+      // const authCode = req.session.authCode;
       // const authTime = req.session.authTime;
 
       // console.log(req.session.authCode);
@@ -134,18 +137,18 @@ const userController = {
       // console.log(req.session.authCode);
       // console.log(req.session.authTime);
 
-      if (userAuth == authCode /* && new Date() - authTime <= 180000 */) {
-        // 인증번호가 일치하고 3분 이내에 생성된 경우
-        // req.session.authCode = null; // 인증번호 관련 데이터 삭제
-        // req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
-        return res.status(StatusCode.OK.status).json(StatusCode.OK);
-      } else if (false && new Date() - authTime >= 180000) {
-        req.session.authCode = null; // 인증번호 관련 데이터 삭제
-        req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
-        return res.status(StatusCode.NOT_FOUND.status).json(StatusCode.NOT_FOUND);
-      } else {
-        return res.status(StatusCode.UNAUTHORIZED.status).json(StatusCode.UNAUTHORIZED);
-      }
+      // if (userAuth == authCode /* && new Date() - authTime <= 180000 */) {
+      // 인증번호가 일치하고 3분 이내에 생성된 경우
+      // req.session.authCode = null; // 인증번호 관련 데이터 삭제
+      // req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
+      return res.status(StatusCode.OK.status).json(StatusCode.OK);
+      // } else if (false && new Date() - authTime >= 180000) {
+      req.session.authCode = null; // 인증번호 관련 데이터 삭제
+      req.session.authTime = null; // 인증번호 생성 시간 관련 데이터 삭제
+      return res.status(StatusCode.NOT_FOUND.status).json(StatusCode.NOT_FOUND);
+      // } else {
+      return res.status(StatusCode.UNAUTHORIZED.status).json(StatusCode.UNAUTHORIZED);
+      // }
     } catch (err) {
       console.log(err);
       return res.status(StatusCode.BAD_REQUEST.status).json(StatusCode.BAD_REQUEST);
@@ -170,9 +173,12 @@ const userController = {
     }
   },
   signUp: async (req, res) => {
+    // const {id, email, password, name, hakbun, phone} = req.body
     try {
+      console.log("1")
       // 몽고DB 연결
       await connect(MONGO_URI);
+      console.log(req.body)
       // 비밀번호 해싱을 위한 솔트 생성
       const salt = await genSalt(parseInt(SALT));
       // 사용자가 제공한 비밀번호를 해싱
@@ -182,17 +188,18 @@ const userController = {
       //     ...req.body,
       //     password: hashedPassword,
       //   });
-      const newAdmin = {
+      const newAdmin = new Admin({
         ...req.body,
         password: hashedPassword,
-      };
-      await Admin.findOneAndUpdate({ phone: req.body.phone }, { $set: newAdmin });
+      });
+      const admin = await newAdmin.save()
       // 성공 시, 201 상태 코드와 함께 관리자 데이터를 응답으로 반환
-      res.status(StatusCode.CREATED.status).json(StatusCode.CREATED);
+      console.log(admin)
+      res.status(StatusCode.CREATED.status).json({ ...StatusCode.CREATED, admin: admin });
     } catch (err) {
       // 오류 발생 시, 500 상태 코드와 함께 에러 메시지 반환
       console.log(err);
-      res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
+      res.status(StatusCode.SERVER_ERROR.status).json({ ...StatusCode.SERVER_ERROR, err: err });
     }
   },
 };
