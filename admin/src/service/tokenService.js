@@ -1,6 +1,6 @@
 import { JWT_ACCESS, JWT_REFRESH } from '../constant/constant.js';
-import pkg from 'jsonwebtoken';
-const { sign, verify } = pkg;
+import jwt from 'jsonwebtoken';
+
 
 const tokenService = {
   createAccess: (_id, id) => {
@@ -10,7 +10,8 @@ const tokenService = {
     if (!id) {
       throw new Error('ID IS NOT NALID');
     }
-    return sign(
+    /** Test!!! */ console.log(`createAccess : start Access token create`);
+    return jwt.sign(
       {
         _id,
         id,
@@ -28,7 +29,8 @@ const tokenService = {
     if (!id) {
       throw new Error('ID IS NOT NALID');
     }
-    return sign(
+    /** Test!!! */ console.log(`createAccess : start Refresh token create`);
+    return jwt.sign(
       {
         _id,
         id,
@@ -41,3 +43,4 @@ const tokenService = {
   },
 };
 export default tokenService;
+//              /** Test!!! */ console.log(`${}`);

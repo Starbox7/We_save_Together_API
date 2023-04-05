@@ -8,10 +8,10 @@ const authRouter = Router();
 
 /** Routing */
 authRouter //
-  .route('/auth/signup')
-  .post(authController.signup);
+    .route('/auth/signup')
+    .post(authController.signup);
 authRouter //
-  .route('/auth/signin')
-  .post(authController.signin);
+    .route('/auth/signin')
+    .post(authController.signin);
 
 export default authRouter;
