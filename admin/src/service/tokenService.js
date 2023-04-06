@@ -1,3 +1,4 @@
+import { token } from 'morgan';
 import { JWT_ACCESS, JWT_REFRESH } from '../constant/constant.js';
 import jwt from 'jsonwebtoken';
 
@@ -41,6 +42,19 @@ const tokenService = {
       }
     );
   },
+  validate: (token) => {
+    if (!token) {
+      throw new Error('Token Is Not Found')
+    }
+  },
+  verifyAccess: (token) => { },
+  verifyRefresh: (token) => {
+    try {
+      return jwt.verify(token, JWT_REFRESH);
+    } catch (err) {
+      throw new Error('Refresh Token is Expire');
+    }
+  }
 };
 export default tokenService;
 //              /** Test!!! */ console.log(`${}`);

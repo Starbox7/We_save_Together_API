@@ -12,6 +12,7 @@ authRouter //
     .post(authController.signup);
 authRouter //
     .route('/auth/signin')
+    .get(authController.auto)
     .post(authController.signin);
 
 export default authRouter;
