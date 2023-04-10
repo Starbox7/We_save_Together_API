@@ -69,6 +69,14 @@ const Auth = {
       throw new Error(`DB Error : ${err}`);
     }
   },
+  findId: async (hakbun, email) => {
+    try {
+      await connect(MONGO_URI);
+      return await AdminSchema.findOne({ hakbun: hakbun, email: email });
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
 };
 export default Auth;
 //              /** Test!!! */ console.log(`${}`);

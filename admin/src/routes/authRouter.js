@@ -20,5 +20,8 @@ authRouter //
 authRouter //
   .route('/auth/:id/:phone')
   .get(authController.authConfirm);
+authRouter //
+  .route('/findid')
+  .post(authController.findId);
 
 export default authRouter;
