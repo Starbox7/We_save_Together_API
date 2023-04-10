@@ -92,6 +92,22 @@ const authController = {
       });
     }
   },
+  findId: async (req, res) => {
+    const hakbun = req.body.hakbun;
+    const email = req.body.email;
+    try {
+      const admin = await Auth.findId(hakbun, email);
+      if (!admin) {
+        throw new Error('Info is not Admin');
+      }
+      return res.status(StatusCode.OK.status).json({ ...StatusCode.OK, id: admin.id });
+    } catch (err) {
+      return res.status(StatusCode.SERVER_ERROR.status).json({
+        ...StatusCode.SERVER_ERROR,
+        err: `${err}`,
+      });
+    }
+  },
 };
 
 export default authController;
