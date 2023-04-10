@@ -108,7 +108,9 @@ const authController = {
       });
     }
   },
-  findPw: async (req, res) => {},
+  findPw: async (req, res) => {
+    
+  },
 };
 
 export default authController;
