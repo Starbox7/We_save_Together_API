@@ -61,6 +61,14 @@ const Auth = {
       throw new Error('DB error : signup');
     }
   },
+  findAdminAndUpdate: async (id, phone) => {
+    try {
+      await connect(MONGO_URI);
+      await AdminSchema.findOneAndUpdate({ id: id }, { phone: phone, authNum: 'true' });
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
 };
 export default Auth;
 //              /** Test!!! */ console.log(`${}`);
