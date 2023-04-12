@@ -23,5 +23,11 @@ authRouter //
 authRouter //
   .route('/findid')
   .post(authController.findId);
+authRouter //
+  .route('/findpw')
+  .post(authController.findPwAuth);
+authRouter //
+  .route('/updatepw')
+  .post(authController.updatePw);
 
 export default authRouter;

@@ -108,8 +108,36 @@ const authController = {
       });
     }
   },
-  findPw: async (req, res) => {
-    
+  findPwAuth: async (req, res) => {
+    const id = req.body.id;
+    const phone = req.body.phone;
+    const admin = await Auth.findPw(id, phone);
+    if (!admin) {
+      throw new Error(`There is no admin in client information`);
+    }
+    const sms = await authService.authRequest(phone);
+
+    try {
+      return res.status(StatusCode.OK.status).json({ ...StatusCode.OK, smsNum: sms });
+    } catch (err) {
+      return res.status(StatusCode.SERVER_ERROR.status).json({
+        ...StatusCode.SERVER_ERROR,
+        err: `${err}`,
+      });
+    }
+  },
+  updatePw: async (req, res) => {
+    const id = req.body.id;
+    const password = req.body.password;
+    try {
+      await authService.updatePw(id, password);
+      return res.status(StatusCode.OK.status).json({ ...StatusCode.OK });
+    } catch (err) {
+      return res.status(StatusCode.SERVER_ERROR.status).json({
+        ...StatusCode.SERVER_ERROR,
+        err: `${err}`,
+      });
+    }
   },
 };
 

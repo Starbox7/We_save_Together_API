@@ -157,6 +157,20 @@ const authService = {
       throw new Error(`SMS send error : ${error}`);
     }
   },
+  updatePw: async (id, password) => {
+    try {
+      const admin = Auth.findAdminById(id);
+      const salt = await genSalt(10);
+      const hashed = await hash(password, salt);
+      const newAdmin = {
+        ...admin,
+        password: hashed,
+      };
+      await Auth.findAdminAndPwUpdate(id, newAdmin);
+    } catch (err) {
+      throw new Error(`updatePw error : ${error}`);
+    }
+  },
 };
 
 export default authService;
