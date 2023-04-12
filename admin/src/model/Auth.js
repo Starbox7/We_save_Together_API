@@ -93,6 +93,14 @@ const Auth = {
       throw new Error(`DB Error : ${err}`);
     }
   },
+  deleteAdmin: async (id) => {
+    try {
+      await connect(MONGO_URI);
+      await AdminSchema.findOneAndDelete({ id: id });
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
 };
 export default Auth;
 //              /** Test!!! */ console.log(`${}`);

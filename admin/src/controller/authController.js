@@ -36,6 +36,7 @@ const authController = {
         accessToken: newAccessToken,
         refreshToken: newRefreshToken,
         phone: admin.phone,
+        id: id,
       });
     } catch (err) {
       return res.status(StatusCode.SERVER_ERROR.status).json({
@@ -56,6 +57,7 @@ const authController = {
         ...StatusCode.OK,
         accessToken: newAccessToken,
         refreshToken: newRefreshToken,
+        id: id,
       });
     } catch (err) {
       return res.status(StatusCode.SERVER_ERROR.status).json({
@@ -131,6 +133,18 @@ const authController = {
     const password = req.body.password;
     try {
       await authService.updatePw(id, password);
+      return res.status(StatusCode.OK.status).json({ ...StatusCode.OK });
+    } catch (err) {
+      return res.status(StatusCode.SERVER_ERROR.status).json({
+        ...StatusCode.SERVER_ERROR,
+        err: `${err}`,
+      });
+    }
+  },
+  deleteAdmin: async (req, res) => {
+    const id = req.params.id;
+    try {
+      await Auth.deleteAdmin(id);
       return res.status(StatusCode.OK.status).json({ ...StatusCode.OK });
     } catch (err) {
       return res.status(StatusCode.SERVER_ERROR.status).json({

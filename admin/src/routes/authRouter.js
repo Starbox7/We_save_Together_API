@@ -29,5 +29,7 @@ authRouter //
 authRouter //
   .route('/updatepw')
   .post(authController.updatePw);
-
+authRouter //
+  .route('/deleteadmin/:id')
+  .get(authController.deleteAdmin);
 export default authRouter;
