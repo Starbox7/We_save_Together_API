@@ -77,6 +77,30 @@ const Auth = {
       throw new Error(`DB Error : ${err}`);
     }
   },
+  findPw: async (id, phone) => {
+    try {
+      await connect(MONGO_URI);
+      return await AdminSchema.findOne({ id: id, phone: phone });
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
+  findAdminAndPwUpdate: async (id, admin) => {
+    try {
+      await connect(MONGO_URI);
+      await AdminSchema.findOneAndUpdate({ id: id }, admin);
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
+  deleteAdmin: async (id) => {
+    try {
+      await connect(MONGO_URI);
+      await AdminSchema.findOneAndDelete({ id: id });
+    } catch (err) {
+      throw new Error(`DB Error : ${err}`);
+    }
+  },
 };
 export default Auth;
 //              /** Test!!! */ console.log(`${}`);
