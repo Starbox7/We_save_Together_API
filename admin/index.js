@@ -7,6 +7,7 @@ import cors from 'cors';
 
 /** 라우터 */
 import authRouter from './routes/authRouter.js';
+import { SERVER_PORT } from './src/constant/constant.js';
 
 /** dotenv를 사용하여 환경 변수를 설정 */
 dotenv.config();
@@ -34,7 +35,7 @@ app.use(cors());
 // );
 
 /** 환경변수에서 포트 번호를 가져옴 */
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
 
 /** JSON 파싱을 위해 express.json 미들웨어 사용 */
 app.use(express.json());
@@ -52,6 +53,6 @@ app.use(router);
  * 앱이 설정된 포트에서 실행되며,
  * 시작되면 콘솔에 메시지를 출력합니다.
  */
-app.listen(PORT, () => {
+app.listen(SERVER_PORT, () => {
   console.log('We save Together API is running at ' + PORT);
 });
