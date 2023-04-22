@@ -1,8 +1,0 @@
-#보안 권장 사항
-.env
-
-#불필요 폴더
-/node_modules
-
-#쓰레기통
-#/others

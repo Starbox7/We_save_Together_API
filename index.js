@@ -2,12 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-// import session from 'express-session';
-// import memorystore from 'memorystore';
-
-/** 라우터 */
-import authRouter from './routes/authRouter.js';
 import { SERVER_PORT } from './src/constant/constant.js';
+import router from './src/routes/index.js';
 
 /** dotenv를 사용하여 환경 변수를 설정 */
 dotenv.config();
@@ -16,23 +12,6 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-// app.use(cors({ origin: true, credentials: true, methods: ['GET', 'POST', 'PUT', 'DELETE'] })); //cors 사용자 식별 테스트
-
-// const store = memorystore(session);
-// const newStore = new store({
-//   checkPeriod: 86400000,
-// });
-
-/** */
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { secure: false },
-//     store: newStore,
-//   })
-// );
 
 /** 환경변수에서 포트 번호를 가져옴 */
 // const PORT = process.env.PORT;
