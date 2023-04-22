@@ -14,7 +14,7 @@ dotenv.config();
 /** express 인스턴스를 생성 */
 const app = express();
 
-app.use(cors())
+app.use(cors());
 // app.use(cors({ origin: true, credentials: true, methods: ['GET', 'POST', 'PUT', 'DELETE'] })); //cors 사용자 식별 테스트
 
 // const store = memorystore(session);
@@ -33,7 +33,6 @@ app.use(cors())
 //   })
 // );
 
-
 /** 환경변수에서 포트 번호를 가져옴 */
 const PORT = process.env.PORT;
 
@@ -47,7 +46,7 @@ app.use(express.json());
  * 라우팅을 처리하기 위해 Router를 사용합니다.
  */
 // app.use("/test", DBtestRouter);
-app.use('/auth', authRouter);
+app.use(router);
 
 /**
  * 앱이 설정된 포트에서 실행되며,
