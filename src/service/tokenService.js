@@ -2,7 +2,6 @@ import { token } from 'morgan';
 import { JWT_ACCESS, JWT_REFRESH } from '../constant/constant.js';
 import jwt from 'jsonwebtoken';
 
-
 const tokenService = {
   createAccess: (_id, id) => {
     if (!_id) {
@@ -19,7 +18,7 @@ const tokenService = {
       },
       JWT_ACCESS,
       {
-        expiresIn: '1m',
+        expiresIn: '5m',
       }
     );
   },
@@ -44,17 +43,17 @@ const tokenService = {
   },
   validate: (token) => {
     if (!token) {
-      throw new Error('Token Is Not Found')
+      throw new Error('Token Is Not Found');
     }
   },
-  verifyAccess: (token) => { },
+  verifyAccess: (token) => {},
   verifyRefresh: (token) => {
     try {
       return jwt.verify(token, JWT_REFRESH);
     } catch (err) {
       throw new Error('Refresh Token is Expire');
     }
-  }
+  },
 };
 export default tokenService;
 //              /** Test!!! */ console.log(`${}`);
