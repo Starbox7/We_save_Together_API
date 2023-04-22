@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import os from 'os';
 /** Server Data */
 export const SERVER_URL = process.env.SERVER_URL;
 export const SERVER_PORT = process.env.SERVER_PORT;
