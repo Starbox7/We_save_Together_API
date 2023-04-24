@@ -1,6 +1,6 @@
 import { genSalt, hash, compare } from 'bcrypt';
 import Auth from '../model/Auth.js';
-import { MONGO_URI, SANS_DATA } from '../constant/constant.js';
+import { MONGO_URI, SANS_DATA } from '../../constant/constant.js';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
 import { connect } from 'mongoose';

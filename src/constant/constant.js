@@ -2,7 +2,7 @@ import 'dotenv/config';
 import os from 'os';
 /** Server Data */
 export const SERVER_URL = process.env.SERVER_URL;
-export const SERVER_PORT = process.env.SERVER_PORT;
+export const SERVER_PORT = os.platform() === 'darwin' ? process.env.MAC_SERVER_PORT : process.env.NORMAL_SERVER_PORT;
 /** Security Data */
 export const MAJOR = process.env.MAJOR;
 /** Mongo Database URI */
