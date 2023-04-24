@@ -1,12 +1,14 @@
 import 'dotenv/config';
 import os from 'os';
+import { isDev } from '../config/dev.js';
+
 /** Server Data */
 export const SERVER_URL = process.env.SERVER_URL;
 export const SERVER_PORT = os.platform() === 'darwin' ? process.env.MAC_SERVER_PORT : process.env.NORMAL_SERVER_PORT;
 /** Security Data */
 export const MAJOR = process.env.MAJOR;
 /** Mongo Database URI */
-export const MONGO_URI = process.env.MONGO_URI;
+export const MONGO_URI = isDev ? process.env.DEV_MONGO_URI : process.env.MAIN_MONGO_URI;
 /** SANS Data */
 export const SANS_DATA = {
   FROM_PHONE: process.env.FROM_PHONE,
