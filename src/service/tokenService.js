@@ -1,5 +1,5 @@
 import { token } from 'morgan';
-import { JWT_ACCESS, JWT_REFRESH } from '../constant/constant.js';
+import { JWT_ACCESS, JWT_REFRESH } from '../../constant/constant.js';
 import jwt from 'jsonwebtoken';
 
 const tokenService = {

@@ -1,6 +1,6 @@
 import { connect, disconnect } from 'mongoose';
 import { AdminSchema } from '../schema/schema.js';
-import { MONGO_URI } from '../constant/constant.js';
+import { MONGO_URI } from '../../constant/constant.js';
 
 const Auth = {
   findAdminById: async (id) => {
