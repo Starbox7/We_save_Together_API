@@ -4,9 +4,9 @@ import { Router } from 'express';
 import authRouter from './authRouter.js';
 
 /** Create router */
-const router = Router();
+const adminRouter = Router();
 
 /** connect Router */
-router.use(authRouter);
+adminRouter.use(authRouter);
 
-export default router;
+export default adminRouter;
