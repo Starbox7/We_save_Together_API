@@ -1,7 +1,7 @@
 /** import Library */
 import express, { urlencoded, json } from 'express';
 import cors from 'cors';
-import { SERVER_URL, SERVER_PORT } from './constant/constant.js';
+import { SERVER_URL, SERVER_PORT } from './src/constant/constant.js';
 /** import Router */
 import router from './src/routes/index.js';
 
