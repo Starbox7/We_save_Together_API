@@ -67,7 +67,7 @@ const Signup = ({ navigation }) => {
   // form handling
   const handleSignup = (credentials, setSubmitting) => {
     handleMessage(null);
-    const url = 'http://127.0.0.1:5000/api/users/register'; //(locahhost -> 로컬 와이파이 주소)
+    const url = 'http://127.0.0.1:5001/api/users/register'; //(locahhost -> 로컬 와이파이 주소)
     axios
       .post(url, credentials)
       .then((response) => {
