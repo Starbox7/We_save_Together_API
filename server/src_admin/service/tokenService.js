@@ -3,6 +3,11 @@ import { JWT_ACCESS, JWT_REFRESH } from '../constant/constant.js';
 import jwt from 'jsonwebtoken';
 
 const tokenService = {
+  validate: (token) => {
+    if (!token) {
+      throw new Error('Token Is Not Found');
+    }
+  },
   createAccess: (_id, id) => {
     if (!_id) {
       throw new Error('_ID IS NOT VALID');
@@ -41,12 +46,14 @@ const tokenService = {
       }
     );
   },
-  validate: (token) => {
-    if (!token) {
-      throw new Error('Token Is Not Found');
+  verifyAccess: (token) => {
+    try {
+      const data = jwt.verify(token, JWT_ACCESS);
+      return { _id: data._id, verify: true };
+    } catch (err) {
+      return { idx: -1, verify: false };
     }
   },
-  verifyAccess: (token) => {},
   verifyRefresh: (token) => {
     try {
       return jwt.verify(token, JWT_REFRESH);

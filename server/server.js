@@ -1,7 +1,6 @@
 /** import Library */
 import express, { urlencoded, json } from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 /** */
 import { SERVER_URL, SERVER_PORT } from './src_admin/constant/constant.js';
@@ -25,12 +24,12 @@ server.use(urlencoded({ extended: true }));
 server.use(cookieParser());
 
 /** Routing */
-server.use(userRouter);
 server.use(adminRouter);
+server.use(userRouter);
 
 server.listen(parseInt(SERVER_PORT), () => {
   console.log(`  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ`);
-  console.log(`ㅣ [Admin Server is Running] in Port [${SERVER_PORT}] and URL [${SERVER_URL}]                   ㅣ`);
+  console.log(`ㅣ [Admin Server is Running] in Port [${SERVER_PORT}] and URL [${SERVER_URL}]            ㅣ`);
   console.log(`ㅣ ${SERVER_PORT == 5000 ? 'Hello Window!  :D' : 'Hello MAC!     :D'}                                                              ㅣ`);
   console.log(`ㅣ ${isDev ? '현재 Dev MONGO 데이터베이스를 사용중입니다!' : '현재 Main MONGO 데이터베이스를 사용중입니다!'}                                   ㅣ`);
   console.log(`ㅣ ${isDev ? '데이터베이스 변경 희망시 ./src/config/dev.js에서 isDev를 true로 변경하세요.' : '데이터베이스 변경 희망시 ./src/config/dev.js에서 isDev를 false로 변경하세요.'}   ㅣ`);
