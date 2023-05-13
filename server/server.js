@@ -1,7 +1,6 @@
 /** import Library */
 import express, { urlencoded, json } from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 /** */
 import { SERVER_URL, SERVER_PORT } from './src_admin/constant/constant.js';
@@ -25,8 +24,8 @@ server.use(urlencoded({ extended: true }));
 server.use(cookieParser());
 
 /** Routing */
-server.use(userRouter);
 server.use(adminRouter);
+server.use(userRouter);
 
 server.listen(parseInt(SERVER_PORT), () => {
   console.log(`  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ`);
