@@ -32,4 +32,5 @@ authRouter //
 authRouter //
   .route('/deleteadmin/:id')
   .get(authController.deleteAdmin);
+
 export default authRouter;
