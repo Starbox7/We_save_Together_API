@@ -31,6 +31,7 @@ const IconContainer = styled.div`
 const WriteNotion = styled.button`
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 5px;
   height: 4vh;
   width: 5vw;
