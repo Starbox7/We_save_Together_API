@@ -1,11 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
-
 import { AiOutlineSetting, AiOutlineQuestionCircle, AiOutlineShareAlt } from 'react-icons/ai';
+import BarGraph from './component/barGraph';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 26vw;
+  width: 24.5vw;
   margin-right: 25px;
   margin-bottom: 25px;
   background-color: white;
@@ -38,8 +39,9 @@ function ServiceBoard() {
           <AiOutlineShareAlt size={15} style={{ marginRight: '10px' }} />
         </IconContainer>
       </TitleContainer>
-      <p>전체 서비스 통계</p>
+      <BarGraph />
     </Container>
   );
 }
+
 export default ServiceBoard;

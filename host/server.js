@@ -6,6 +6,7 @@ server.use(json());
 
 server.use(barbel1);
 
-server.listen(parseInt(5001), () => {
+//5001
+server.listen(parseInt(5002), () => {
   console.log(`[Admin Server is Running] \nin Port [5001] \nand URL [http://localhost:5001/}]`);
 });
