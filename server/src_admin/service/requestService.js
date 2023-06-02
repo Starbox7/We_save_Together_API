@@ -5,8 +5,8 @@ const requestService = {
     const data = await Request.get();
     return data;
   },
-  put: async () => {
-    await Request.updateStatus(campagin_name, register_userId);
+  put: async (campagin, id) => {
+    await Request.put(campagin, id);
   },
 };
 

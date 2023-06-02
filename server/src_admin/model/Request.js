@@ -1,6 +1,6 @@
 import { connect } from 'mongoose';
 import { MONGO_URI } from '../constant/constant.js';
-import { CampaginSchema } from '../schema/schema.js';
+import { CampaginSchema, UserSchema } from '../schema/schema.js';
 
 const Request = {
   get: async () => {
@@ -13,8 +13,8 @@ const Request = {
         if (users.length > 0) {
           return [
             {
-              캠페인_이름: campagin.campagin_name,
-              유저: users.map((user) => user.register_userId),
+              campagin: campagin.campagin_name,
+              id: users.map((user) => user.register_userId),
             },
           ];
         } else {
@@ -27,17 +27,26 @@ const Request = {
       throw new Error(`DB Error : ${err}`);
     }
   },
-  put: async () => {
+  put: async (campagin, id) => {
     try {
       await connect(MONGO_URI);
-      return await CampaginSchema.updateOne(
+      await CampaginSchema.updateOne(
         {
-          campagin_name: campagin_name,
+          campagin_name: campagin,
           register_user: {
-            $elemMatch: { register_userId: register_userId },
+            $elemMatch: { register_userId: id },
           },
         },
         { $set: { 'register_user.$.register_status': true } }
+      );
+      await UserSchema.updateOne(
+        {
+          user_id: id,
+          register_campagin: {
+            $elemMatch: { register_campaginName: campagin },
+          },
+        },
+        { $set: { 'register_campagin.$.register_status': true } }
       );
     } catch (err) {
       throw new Error(`DB Error : ${err}`);
