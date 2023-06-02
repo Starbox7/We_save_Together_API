@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import moment from 'moment';
 
 const Admin = new Schema({
   id: {
@@ -121,8 +122,35 @@ const User = new Schema({
   },
 });
 
+const Campagin = new Schema({
+  campagin_name: {
+    type: String,
+    maxlength: 50,
+  },
+  campagin_operatingDate: {
+    type: Date,
+    default: moment().format('YYYY-MM-DD'),
+  },
+  campagin_point: {
+    type: Number,
+    default: 30,
+  },
+  image: String,
+  campagin_volunteerTimer: {
+    type: Number,
+    default: 3,
+  },
+  register_user: [
+    {
+      register_userId: { type: String },
+      register_status: { type: Boolean },
+    },
+  ],
+});
+
 const AdminSchema = model('admin', Admin);
 const NotionSchema = model('notion', Notion);
 const UserSchema = model('user', User);
+const CampaginSchema = model('campagin', Campagin);
 
-export { AdminSchema, NotionSchema, UserSchema };
+export { AdminSchema, NotionSchema, UserSchema, CampaginSchema };
