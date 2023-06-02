@@ -1,6 +1,5 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import { AiOutlineSetting, AiOutlineQuestionCircle, AiOutlineShareAlt } from 'react-icons/ai';
 
 const Container = styled.div`
   display: flex;
@@ -13,33 +12,97 @@ const Container = styled.div`
   padding: 20px;
   padding-top: 0px;
 `;
+
 const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 5vh;
 `;
+
 const Title = styled.p`
   font-weight: bold;
 `;
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
 `;
 
-function HostBoard() {
+const TableHeader = styled.th`
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+`;
+
+const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+`;
+
+const TableCell = styled.td`
+  padding: 10px;
+`;
+
+const ActionButton = styled.button`
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  ${(props) => (props.approved ? 'background-color: #3f51b5; color: white;' : 'background-color: #f44336; color: white;')}
+`;
+
+function HostApprovalBoard() {
+  const [hosts, setHosts] = useState([
+    { id: 1, username: 'user1', organization: 'Organization A', approved: false },
+    { id: 2, username: 'user2', organization: 'Organization B', approved: true },
+    { id: 3, username: 'user3', organization: 'Organization C', approved: false },
+    { id: 4, username: 'user4', organization: 'Organization D', approved: false },
+    // ... add more hosts here ...
+  ]);
+
+  const handleApproval = (hostId) => {
+    setHosts((prevHosts) =>
+      prevHosts.map((host) => {
+        if (host.id === hostId) {
+          return { ...host, approved: !host.approved };
+        }
+        return host;
+      })
+    );
+  };
+
   return (
     <Container>
       <TitleContainer>
-        <Title>Host Register</Title>
-        <IconContainer>
-          <AiOutlineQuestionCircle size={15} style={{ marginRight: '10px' }} />
-          <AiOutlineSetting size={15} style={{ marginRight: '10px' }} />
-          <AiOutlineShareAlt size={15} style={{ marginRight: '10px' }} />
-        </IconContainer>
+        <Title>Host Approval</Title>
       </TitleContainer>
-      <p>호스트 등록 처리</p>
+      <Table>
+        <thead>
+          <tr>
+            <TableHeader>No.</TableHeader>
+            <TableHeader>Username</TableHeader>
+            <TableHeader>Organization</TableHeader>
+            <TableHeader>Action</TableHeader>
+          </tr>
+        </thead>
+        <tbody>
+          {hosts.map((host, index) => (
+            <TableRow key={host.id}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{host.username}</TableCell>
+              <TableCell>{host.organization}</TableCell>
+              <TableCell>
+                <ActionButton onClick={() => handleApproval(host.id)} approved={host.approved}>
+                  {host.approved ? 'Approved' : 'Not Approved'}
+                </ActionButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </tbody>
+      </Table>
     </Container>
   );
 }
-export default HostBoard;
+
+export default HostApprovalBoard;

@@ -1,10 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
-
 import { AiOutlineSetting, AiOutlineQuestionCircle, AiOutlineShareAlt } from 'react-icons/ai';
+import PieChartComponent from './component/pieChart';
 
 const Container = styled.div`
   display: flex;
-  width: 26vw;
+  width: 24.5vw;
   margin-right: 25px;
   margin-bottom: 25px;
   background-color: white;
@@ -38,8 +39,9 @@ function CampainBoard() {
           <AiOutlineShareAlt size={15} style={{ marginRight: '10px' }} />
         </IconContainer>
       </TitleContainer>
-      <p>캠페인 통계</p>
+      <PieChartComponent />
     </Container>
   );
 }
+
 export default CampainBoard;
