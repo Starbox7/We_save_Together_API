@@ -5,7 +5,7 @@ const requestRouter = Router();
 
 requestRouter //
   .route('/register/allow')
-  .post(requestController.put);
+  .put(requestController.put);
 
 requestRouter //
   .route('/register')

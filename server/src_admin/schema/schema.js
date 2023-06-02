@@ -120,6 +120,12 @@ const User = new Schema({
     data: Buffer,
     contentType: String,
   },
+  register_campagin: [
+    {
+      register_campaginName: { type: String },
+      register_status: { type: Boolean },
+    },
+  ],
 });
 
 const Campagin = new Schema({

@@ -11,8 +11,13 @@ const requestController = {
     }
   },
   put: async (req, res) => {
+    console.log(`${req.body.id}`);
+    console.log(`${req.body.campagin}`);
+    const campagin = req.body.campagin;
+    const id = req.body.id;
+    // console.log(`${campagin}${id}`);
     try {
-      await requestService.put();
+      await requestService.put(campagin, id);
       return res.status(StatusCode.OK.status).json(StatusCode.OK);
     } catch (err) {
       return res.status(StatusCode.SERVER_ERROR.status).json(StatusCode.SERVER_ERROR);
