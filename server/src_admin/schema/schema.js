@@ -126,6 +126,13 @@ const User = new Schema({
       register_status: { type: Boolean },
     },
   ],
+  complete_campagin: [
+    {
+      complete_campaginName: { type: String },
+      complete_status: { type: Boolean },
+      complete_image: { type: String },
+    },
+  ],
 });
 
 const Campagin = new Schema({
@@ -150,6 +157,13 @@ const Campagin = new Schema({
     {
       register_userId: { type: String },
       register_status: { type: Boolean },
+    },
+  ],
+  complete_user: [
+    {
+      complete_userId: { type: String },
+      complete_status: { type: Boolean },
+      complete_imgae: { type: String },
     },
   ],
 });
