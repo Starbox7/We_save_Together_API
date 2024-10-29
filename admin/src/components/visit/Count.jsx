@@ -62,21 +62,21 @@ function Count() {
         <IconContainer>
           <BsFillSearchHeartFill size="27" color="red" />
         </IconContainer>
-        <CountText>{todayVisitNum}</CountText>
+        {/* <CountText>{todayVisitNum}</CountText> */}
       </CountType>
       <CountType>
         Total visits
         <IconContainer>
           <BsDoorOpenFill size="27" color="brown" />
         </IconContainer>
-        <CountText>{totalVisitNum}</CountText>
+        {/* <CountText>{totalVisitNum}</CountText> */}
       </CountType>
       <CountType>
         Total visitors
         <IconContainer>
           <BsFillPersonCheckFill size="27" color="green" />
         </IconContainer>
-        <CountText>{totalVisitorNum}</CountText>
+        {/* <CountText>{totalVisitorNum}</CountText> */}
       </CountType>
     </Container>
   );

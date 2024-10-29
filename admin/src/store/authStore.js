@@ -123,13 +123,13 @@ const authStore = create((set, get) => ({
 
     try {
       const res = await auth.signIn(newSignData);
-      if (!res.data.phone) {
-        navigateToAuth();
-        alert('최초 1회 번호 인증이 필요합니다.');
-        return set({
-          isLoading: false,
-        });
-      }
+      // if (!res.data.phone) {
+      //   navigateToAuth();
+      //   alert('최초 1회 번호 인증이 필요합니다.');
+      //   return set({
+      //     isLoading: false,
+      //   });
+      // }
       const accessToken = res.data.accessToken;
       const refreshToken = res.data.refreshToken;
       if (!accessToken) {
@@ -231,8 +231,9 @@ const authStore = create((set, get) => ({
       return alert('휴대폰 번호를 입력해주세요.');
     }
     try {
-      const res = await auth.authRequest(phone);
-      cookieService.setAuth(res.data.smsNum);
+      //네이버 클라우드 디벨로퍼 서비스 중단
+      // const res = await auth.authRequest(phone);
+      // cookieService.setAuth(res.data.smsNum);
       return alert('인증번호가 발송되었습니다.');
     } catch (err) {
       alert('axios error : authRequest');
