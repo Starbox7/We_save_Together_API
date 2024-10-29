@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c2a37862.css",
+    "main.js": "/static/js/main.6091981c.js",
+    "static/js/787.3ce4cc4d.chunk.js": "/static/js/787.3ce4cc4d.chunk.js",
+    "static/media/recycleEarth.png": "/static/media/recycleEarth.977f4ecfa2b035272f55.png",
+    "static/media/ecoEarth.png": "/static/media/ecoEarth.b18cd5436617b2547603.png",
+    "static/media/teamlogo.png": "/static/media/teamlogo.940b183a205069d9befa.png",
+    "static/media/blue_earth.png": "/static/media/blue_earth.07c9f242e4efc930eff5.png",
+    "static/media/earth.png": "/static/media/earth.ef049624879d2cc23979.png",
+    "index.html": "/index.html",
+    "main.c2a37862.css.map": "/static/css/main.c2a37862.css.map",
+    "main.6091981c.js.map": "/static/js/main.6091981c.js.map",
+    "787.3ce4cc4d.chunk.js.map": "/static/js/787.3ce4cc4d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2a37862.css",
+    "static/js/main.6091981c.js"
+  ]
+}
