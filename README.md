@@ -30,13 +30,13 @@ root
     ├── routes              # 라우터  
     └── app.js              # 서버 설정 및 실행  
   
-## 🚀 시작하기
-
-### 클론 및 의존성 설치
-git clone https://github.com/username/repository-name.git
-cd repository-name
-**설명**: 레포지토리를 클론한 후 각 애플리케이션별로 의존성을 설치하는 방법을 안내합니다.
-
+## 🚀 시작하기  
+  
+### 클론 및 의존성 설치  
+git clone https://github.com/username/repository-name.git  
+cd repository-name  
+**설명**: 레포지토리를 클론한 후 각 애플리케이션별로 의존성을 설치하는 방법을 안내합니다.  
+  
 #### 1. 시민용 앱 의존성 설치
 cd citizen-app
 npm install
@@ -85,7 +85,9 @@ npm start
 ## 📝 라이선스
 이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
 
+---
+
 <div align="center">
-  <h3>Starbox Platform에 방문해주셔서 감사합니다!</h3>
+  <h3>We Save Together Platform에 방문해주셔서 감사합니다!</h3>
   <p>궁금한 점이나 제안 사항이 있으면 <a href="mailto:your-email@example.com">이메일</a>로 연락해 주세요.</p>
 </div>
