@@ -1,8 +1,4 @@
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=Starbox%20Platform&fontSize=90" alt="header">
-</div>
-
-# 🌐 Starbox Platform (시민용 앱 + 운영자 웹)
+# 🌐 We Save Together Platform (시민용 앱 + 운영자 웹)
 **React Native로 제작된 시민용 모바일 앱**과 **React로 제작된 운영자 웹 애플리케이션**이 통합된 플랫폼 서비스입니다. 이 프로젝트는 시민과 운영자 모두에게 편리한 사용자 경험을 제공합니다.
 
 ## 🛠 기술 스택
