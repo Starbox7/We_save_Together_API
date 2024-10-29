@@ -33,84 +33,47 @@ root
 ## 🚀 시작하기
 
 ### 1. 클론 및 의존성 설치
-```bash
 git clone https://github.com/username/repository-name.git
 cd repository-name
-
-
 **설명**: 레포지토리를 클론한 후 각 애플리케이션별로 의존성을 설치하는 방법을 안내합니다.
 
-#### 시민용 앱 의존성 설치
-
-```markdown
-**시민용 앱 의존성 설치**
-```bash
+#### 2. 시민용 앱 의존성 설치
 cd citizen-app
 npm install
 
-
-#### 운영자 웹 의존성 설치
-
-```markdown
-**운영자 웹 의존성 설치**
-```bash
+#### 3. 운영자 웹 의존성 설치
 cd ../admin-web
 npm install
 
-
-#### 서버 의존성 설치
-
-```markdown
-**서버 의존성 설치**
-```bash
+#### 4. 서버 의존성 설치
 cd ../server
 npm install
 
-
----
-
-### 6. **환경 변수 설정**
-
-```markdown
-### 2. 환경 변수 설정
+### 5. 환경 변수 설정
 각 폴더 (`citizen-app`, `admin-web`, `server`)에 `.env` 파일을 생성하고 다음 변수를 설정하세요.
 
 **.env 예시**:
 API_URL=https://api.yourdomain.com MONGO_URI=mongodb://localhost:27017/yourdb
 
-## 📱 시민용 앱 실행 (React Native)
-```bash
+### 6. 📱 시민용 앱 실행 (React Native)
 cd citizen-app
 npm run start
 ⚠️ 참고: 시민용 앱 실행 시 Android 또는 iOS 에뮬레이터가 필요합니다.
 
-
-#### 운영자 웹 실행
-
-```markdown
-## 🖥 운영자 웹 실행 (React)
-```bash
+#### 7. 🖥 운영자 웹 실행 (React)
 cd admin-web
 npm start
 운영자 웹은 http://localhost:3000에서 확인할 수 있습니다.
 
 
-#### 서버 실행
-
-```markdown
-## 🌐 백엔드 서버 실행
-```bash
+#### 8. 🌐 백엔드 서버 실행
 cd server
 npm start
 서버는 http://localhost:5000에서 실행됩니다.
 
-
 ---
 
-### 8. **배포**
-
-```markdown
-## 📦 배포
+### 9. 📦 배포
 - **시민용 앱**: Firebase를 통해 배포합니다.
 - **운영자 웹**: Vercel을 사용하여 CI/CD 자동 배포가 설정되어 있습니다.
 
