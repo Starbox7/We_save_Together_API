@@ -47,47 +47,5 @@ npm install
 
 #### 3. 서버 의존성 설치
 cd ../server
-npm install
-
----
-
-### 환경 변수 설정
-각 폴더 (`citizen-app`, `admin-web`, `server`)에 `.env` 파일을 생성하고 다음 변수를 설정하세요.
-
-**.env 예시**:
-API_URL=https://api.yourdomain.com MONGO_URI=mongodb://localhost:27017/yourdb
-
-### 1. 📱 시민용 앱 실행 (React Native)
-cd citizen-app
-npm run start
-⚠️ 참고: 시민용 앱 실행 시 Android 또는 iOS 에뮬레이터가 필요합니다.
-
-#### 2. 🖥 운영자 웹 실행 (React)
-cd admin-web
-npm start
-운영자 웹은 http://localhost:3000에서 확인할 수 있습니다.
-
-
-#### 3. 🌐 백엔드 서버 실행
-cd server
-npm start
-서버는 http://localhost:5000에서 실행됩니다.
-
----
-
-### 📦 배포
-- **시민용 앱**: Firebase를 통해 배포합니다.
-- **운영자 웹**: Vercel을 사용하여 CI/CD 자동 배포가 설정되어 있습니다.
-
-## 📄 API 문서
-백엔드 API 문서는 Swagger를 통해 자동화되어 있으며 `/api-docs`에서 확인할 수 있습니다.
-
-## 📝 라이선스
-이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
-
----
-
-<div align="center">
-  <h3>We Save Together Platform에 방문해주셔서 감사합니다!</h3>
-  <p>궁금한 점이나 제안 사항이 있으면 <a href="mailto:your-email@example.com">이메일</a>로 연락해 주세요.</p>
+np으로 연락해 주세요.</p>
 </div>
