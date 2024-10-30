@@ -7,7 +7,7 @@
 - **Frontend (운영자 웹)**: React, Zustand, Axios, Recharts
 - **Backend**: Node.js, Express, Crypto, Cookie, CORS, JWT, Morgan, Naver Cloud SENS 
 - **Database**: MongoDB
-- **Deployment**: 준비중 (시민용 앱), 준비중 (운영자 웹)
+- **Deployment**: 문서의 "📦 배포"에 따릅니다. 
 
 ## 📂 폴더 구조  
 root  
