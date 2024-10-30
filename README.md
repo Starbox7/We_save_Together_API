@@ -7,7 +7,7 @@
 - **Frontend (운영자 웹)**: React, Zustand, Axios, Recharts
 - **Backend**: Node.js, Express, Crypto, Cookie, CORS, JWT, Morgan, Naver Cloud SENS 
 - **Database**: MongoDB
-- **Deployment**: 준비중 (시민용 앱), 준비중 (운영자 웹)
+- **Deployment**: 문서의 "📦 배포" 영역에 따릅니다. 
 
 ## 📂 폴더 구조  
 root  
@@ -90,5 +90,5 @@ npm start or yarn start:dev
 
 <div align="center">
   <h3>We Save Together Platform에 방문해주셔서 감사합니다!</h3>
-  <p>궁금한 점이나 제안 사항이 있으면 <a href="mailto:starbox918@naver.com">이메일</a>로 연락해 주세요.</p>
+  <p>궁금한 점이나 제안 사항이 있으면 <a href="mailto:starbox918@naver.com">starbox918@naver.com</a>로 연락해 주세요.</p>
 </div>
