@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Page from '../page/index';
 import authStore from '../store/authStore';
+import Page from '../page/index';
 
 function Router() {
   const signState = authStore((state) => state.signState);
