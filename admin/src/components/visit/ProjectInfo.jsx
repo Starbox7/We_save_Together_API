@@ -53,7 +53,7 @@ const Title = styled.h1`
   
 `
 
-function TeamInfo() {
+function ProjectInfo() {
   return (
     <Container>
       <Header />
@@ -80,4 +80,4 @@ function TeamInfo() {
   );
 }
 
-export default TeamInfo;
+export default ProjectInfo;
