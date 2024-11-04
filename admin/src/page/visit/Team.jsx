@@ -1,7 +1,7 @@
 /** import library */
 import styled from 'styled-components';
 /** import component */
-import Footer from '../../components/visit/Footer';
+import Footer from '../../common/components/Footer';
 import TeamInfo from '../../components/visit/TeamInfo';
 /** import Color */
 import { AdminColor } from '../../asset/Colors';

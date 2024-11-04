@@ -1,6 +1,6 @@
 // import Content from "./content/Content";
 import Count from "./Count";
-import Footer from "./Footer";
+import Footer from "../../common/components/Footer";
 import Header from "./Header";
 import HeaderMenu from "./HeaderMenu";
 import ImageSlider from "./ImageSlider";

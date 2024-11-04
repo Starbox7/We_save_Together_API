@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 /** import component */
 import ProjectInfo from '../../components/visit/ProjectInfo';
-import Footer from '../../components/visit/Footer';
+import Footer from '../../common/components/Footer';
 /** import Color */
 import { AdminColor } from '../../asset/Colors';
 
